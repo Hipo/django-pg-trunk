@@ -9,7 +9,7 @@ with open(os.path.join(os.path.dirname(__file__), "README.md")) as readme:
 
 setup(
     name="django-pg-trunk",
-    version="0.1.2",
+    version="0.1.3",
     packages=find_packages(exclude=["test*"]),
     include_package_data=True,
     install_requires=[
