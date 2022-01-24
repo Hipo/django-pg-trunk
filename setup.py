@@ -20,9 +20,9 @@ setup(
     description="A PostgreSQL profiler for Django that uses pg_stat_statements extension",
     long_description=README,
     long_description_content_type="text/markdown",
-    author="Ömer Faruk Abacı",
-    author_email="omerfabaci@gmail.com",
-    url="https://github.com/omerfarukabaci/django-pg-trunk",
+    author="Hipo",
+    author_email="faruk@hipo.biz",
+    url="https://github.com/Hipo/django-pg-trunk",
     python_requires=">=3.7",
     classifiers=[
         "Environment :: Web Environment",
