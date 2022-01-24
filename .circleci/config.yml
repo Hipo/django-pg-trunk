@@ -1,0 +1,134 @@
+version: 2.1
+
+executors:
+  python_and_postgres:
+    parameters:
+      python_version:
+        type: string
+      postgres_version:
+        type: string
+    docker:
+      - image: python:<< parameters.python_version >>
+      - image: postgres:<< parameters.postgres_version >>
+        command: postgres -c shared_preload_libraries=pg_stat_statements
+        environment:
+          POSTGRES_DB: 'trunk'
+          POSTGRES_USER: 'trunk'
+          POSTGRES_PASSWORD: 'trunk'
+
+commands:
+  run-tests:
+    parameters:
+      pyversion:
+        type: integer
+      djversions:
+        type: string
+
+    steps:
+      - run:
+          name: Run tests
+          command:
+              pip install tox && tox -e 'py<< parameters.pyversion >>-dj{<< parameters.djversions >>}'
+
+
+jobs:
+  test-python37-postgres13:
+    executor:
+      name: python_and_postgres
+      python_version: "3.7"
+      postgres_version: "13"
+    steps:
+      - checkout
+      - run-tests:
+          pyversion: 37
+          djversions: 22,30,31,32
+
+  test-python37-postgres14:
+    executor:
+      name: python_and_postgres
+      python_version: "3.7"
+      postgres_version: "14"
+    steps:
+      - checkout
+      - run-tests:
+          pyversion: 37
+          djversions: 22,30,31,32
+
+  test-python38-postgres13:
+    executor:
+      name: python_and_postgres
+      python_version: "3.8"
+      postgres_version: "13"
+    steps:
+      - checkout
+      - run-tests:
+          pyversion: 38
+          djversions: 22,30,31,32,40
+
+  test-python38-postgres14:
+    executor:
+      name: python_and_postgres
+      python_version: "3.8"
+      postgres_version: "14"
+    steps:
+      - checkout
+      - run-tests:
+          pyversion: 38
+          djversions: 22,30,31,32,40
+
+  test-python39-postgres13:
+    executor:
+      name: python_and_postgres
+      python_version: "3.9"
+      postgres_version: "13"
+    steps:
+      - checkout
+      - run-tests:
+          pyversion: 39
+          djversions: 22,30,31,32,40
+
+  test-python39-postgres14:
+    executor:
+      name: python_and_postgres
+      python_version: "3.9"
+      postgres_version: "14"
+    steps:
+      - checkout
+      - run-tests:
+          pyversion: 39
+          djversions: 22,30,31,32,40
+
+  test-python310-postgres13:
+    executor:
+      name: python_and_postgres
+      python_version: "3.10"
+      postgres_version: "13"
+    steps:
+      - checkout
+      - run-tests:
+          pyversion: 310
+          djversions: 32,40
+
+  test-python310-postgres14:
+    executor:
+      name: python_and_postgres
+      python_version: "3.10"
+      postgres_version: "14"
+    steps:
+      - checkout
+      - run-tests:
+          pyversion: 310
+          djversions: 32,40
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - test-python37-postgres13
+      - test-python37-postgres14
+      - test-python38-postgres13
+      - test-python38-postgres14
+      - test-python39-postgres13
+      - test-python39-postgres14
+      - test-python310-postgres13
+      - test-python310-postgres14
