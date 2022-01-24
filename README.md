@@ -1,6 +1,6 @@
 # django-pg-trunk
 
-[![django-pg-trunk-circleci](https://circleci.com/gh/omerfarukabaci/django-pg-trunk.svg?style=shield&circle-token=aadf80a935f4d73b67c2529ce001a2057a083a20)](https://app.circleci.com/pipelines/github/omerfarukabaci/django-pg-trunk)
+[![CircleCI](https://circleci.com/gh/Hipo/django-pg-trunk/tree/main.svg?style=shield&circle-token=364e5b03b7461331e3c950c298a57ffe0ad5f23c)](https://circleci.com/gh/Hipo/django-pg-trunk/tree/main)
 [![PyPI Version](https://img.shields.io/pypi/v/django-pg-trunk.svg)](https://pypi.org/project/django-pg-trunk)
 [![Python Versions](https://img.shields.io/pypi/pyversions/django-pg-trunk.svg)](https://pypi.org/project/django-pg-trunk)
 
